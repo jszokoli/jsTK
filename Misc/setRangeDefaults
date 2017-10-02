@@ -1,0 +1,3 @@
+setRangeMake = cmds.shadingNode( 'setRange', asUtility = 1 )
+cmds.setAttr(setRangeMake+'.oldMax', 1, 1, 1, type="double3")
+cmds.setAttr(setRangeMake+'.max', 1, 1, 1, type="double3")
