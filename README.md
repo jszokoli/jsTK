@@ -1,8 +1,4 @@
 # jsTK
 [Maya][Python] Maya Toolshelf
 
-This is a test.
-
-This is another test.
-
-Yet another test.
+jsTK is a maya toolkit with a wide arrangement of tools from modeling to lighting. 
