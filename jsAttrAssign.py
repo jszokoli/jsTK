@@ -119,7 +119,7 @@ def attrAssign(attr,val):
                 val = val
                 if val != None:
                     cmds.setAttr(obj+'.'+attr,val,type='string')
-            
+    print ''
 
 
 
@@ -211,5 +211,3 @@ def buildPrimeUI(args=None):
     
 
 buildPrimeUI()
-
-
