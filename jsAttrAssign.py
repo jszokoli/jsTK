@@ -69,11 +69,10 @@ def applyAttr(args=None):
 
 
 def attrAssign(attr,val):
-    sel = cmds.ls(sl=1)
-    
+    sel = cmds.ls(sl=1)    
     if sel != []:
         for obj in sel:
-            nodeTy = cmds.nodeType(obj)
+            nodeTy = cmds.nodeType(obj)[0]
             if nodeTy == 'transform':
                 obj = cmds.listRelatives(obj,s=1)
             attrType = cmds.getAttr(obj+'.'+attr,type=1)
@@ -211,3 +210,5 @@ def buildPrimeUI(args=None):
     
 
 buildPrimeUI()
+
+
