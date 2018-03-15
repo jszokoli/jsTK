@@ -13,30 +13,36 @@ import maya.cmds as cmds
 #reload(jsAttrAssign)
 
 #Version Number################
-versionNumberAttr = 'v1.1.0'###
+versionNumberAttr = 'v1.1.1'###
 ###############################
 
 ### ChangeLog: ################################################################################
-###v1.1.0 Initial 
+
+###v1.1.1
 """
-Added Shader Support
-Added Multi Type Support
+Added LongName Support
 
 ToDo:
     Patch out Error Messages and replace with Warnings with Instructions.
+"""
+
+###v1.1.0
+"""
+Added Shader Support
+Added Multi Type Support
 """
 ###v1.0.0 Initial 
 
 
 def commonAttrFunc(args=None):
-    sel = cmds.ls(sl=1)
+    sel = cmds.ls(sl=1,l=1)
     selShapes = []
     #Convert Selection to shapes
     if sel != []:
         for obj in sel:
             nodeTy = cmds.nodeType(obj)
             if nodeTy == 'transform':
-                shape = cmds.listRelatives(obj,s=1)
+                shape = cmds.listRelatives(obj,s=1,f=1)
                 selShapes.append(shape)
             else:
                 selShapes.append(obj)
