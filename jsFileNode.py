@@ -1,7 +1,7 @@
 import maya.cmds as cmds
 
 ####################
-#jsFileNode v1.1####
+#jsFileNode v1.0####
 ####################
 
 #Author: Joseph Szokoli
@@ -14,7 +14,7 @@ import maya.cmds as cmds
 
 
 #Version Number#################
-versionNumberTexture = 'v1.1'###
+versionNumberTexture = 'v1.0'###
 ################################
 
 
@@ -97,20 +97,11 @@ def createTextureNodes(args=None):
         print fileTex
         cmds.setAttr(fileTex+'.ftn',FullFilePath, type = "string")
 
-def createTextureNodes1(args=None):    
-    #filePath = '/job/comms/pipeline_testing_2015_1/sandbox/jszokoli/lighting/lighting/work/maya/data/udimTest'
-    filePath = cmds.textField('texDirField',query=1,tx=1)
-    print filePath
-
 
 def selectDirectory(args=None):
-    dialogDir = cmds.fileDialog2(dialogStyle=2, fm = 4, okc = 'Set Directory') or ['Directory']
+    dialogDir = cmds.fileDialog2(dialogStyle=2, fm = 3, okc = 'Set Directory') or ['Directory']
     print dialogDir
-    StringList = ''
-    for i in dialogDir:
-        StringList = StringList+',' + i
-    print StringList
-    cmds.textField('texDirField',edit=1,tx=StringList)
+    cmds.textField('texDirField',edit=1,tx=dialogDir[0])
 
 
 
@@ -171,7 +162,7 @@ cmds.button('Set Directory',c=selectDirectory,h=25)
 cmds.setParent('..')
 cmds.setParent('..')
 cmds.separator(hr=0, style='in',h=50)
-cmds.button('Crate Nodes',w=75,h=50,c=createTextureNodes1)
+cmds.button('Crate Nodes',w=75,h=50,c=createTextureNodes)
 cmds.setParent('..')
 
 cmds.showWindow( window )
