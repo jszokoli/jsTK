@@ -43,11 +43,12 @@ import sys
 renamer = '/net/homes/jszokoli/maya/scripts/jsTK/jsTK/'
 sys.path.append(renamer)
 
-import utilities
-utilities.deleteModules('jsRenamer')
+import jsRenamer.utilities
+jsRenamer.utilities.deleteModules('jsRenamer')
 
 import jsRenamer
 jsRenamer.launch_ui()
+
 
 
 
