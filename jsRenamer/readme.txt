@@ -3,21 +3,27 @@
 ################
 
 
-Author: Joseph Szokoli
-Website: sites.google.com/view/josephszokoli/home
+Joseph Szokoli
+https://sites.google.com/view/josephszokoli/
 
 
-Help:
-To create a shelf icon, move jsRenamer.py to your scripts folder and assign the following command to the shelf.
+Help: 
+Clone jsTK to your maya/scripts/ folder and assign the following command to the shelf.
+
+import sys
+from os.path import expanduser
+home = expanduser("~")
+sys.path.append(home+"/maya/scripts/jsTK/jsTK")
+
+import jsRenamer.utilities
+jsRenamer.utilities.deleteModules('jsRenamer')
 import jsRenamer
-reload(jsRenamer)
+jsRenamer.launch_ui()
 
 
 ##################
 ### ChangeLog: ###
 ##################
-
-
 
 
 
@@ -32,24 +38,6 @@ Fixed Error in full renamer
 
 
 ##v1.0 Initial 
-
-
-
-
-
-
-import sys
-
-renamer = '/net/homes/jszokoli/maya/scripts/jsTK/jsTK/'
-sys.path.append(renamer)
-
-import jsRenamer.utilities
-jsRenamer.utilities.deleteModules('jsRenamer')
-
-import jsRenamer
-jsRenamer.launch_ui()
-
-
 
 
 
