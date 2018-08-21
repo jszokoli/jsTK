@@ -94,19 +94,19 @@ def selectObjects(args=None):
     cmds.select(selectedObjects)
 
 
-def lookdevManager_SwatchBaker_ui(args=None):
-    if cmds.window('lookdevManager_SwatchConverter_ui', exists=True):
-        cmds.deleteUI('lookdevManager_SwatchConverter_ui')
+def jsColorspace_Converter_ui(args=None):
+    if cmds.window('jsColorspace_Converter_ui', exists=True):
+        cmds.deleteUI('jsColorspace_Converter_ui')
     
-    cmds.window('lookdevManager_SwatchConverter_ui', title= 'lookdevManager_SwatchConverter')
+    cmds.window('jsColorspace_Converter_ui', title= 'jsColorspace_Converter')
     
     cmds.columnLayout('ColMaster',
     adjustableColumn=True,
     cal = 'left',
-    parent='lookdevManager_SwatchConverter_ui' )
+    parent='jsColorspace_Converter_ui' )
     
     
-    cmds.frameLayout('FrameMaster',l='lookdevManager_SwatchConverter_ui',parent='ColMaster')
+    cmds.frameLayout('FrameMaster',l='jsColorspace_Converter',parent='ColMaster')
 
     cmds.flowLayout('Flow2')
     mode = cmds.radioCollection()
@@ -133,11 +133,11 @@ def lookdevManager_SwatchBaker_ui(args=None):
     cmds.setParent( '..' )
     cmds.setParent('..')
     
-    cmds.showWindow( 'lookdevManager_SwatchConverter_ui' )
-    cmds.window('lookdevManager_SwatchConverter_ui', edit=True, widthHeight=[322L, 300L], s = True)
+    cmds.showWindow( 'jsColorspace_Converter_ui' )
+    cmds.window('jsColorspace_Converter_ui', edit=True, widthHeight=[322L, 300L], s = True)
     #cmds.window('lookdevManager_SwatchBaker_ui', query=True, widthHeight=True)
 
 
-lookdevManager_SwatchBaker_ui()
+jsColorspace_Converter_ui()
 
 
