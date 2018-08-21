@@ -2,14 +2,28 @@
 ###jsTopologyChecker v2.0:#####
 ###############################
 
-#Author: Joseph Szokoli
-#Website: cargocollective.com/josephSzokoli
-#____________________________________________________________________________________________________________________________________________________________________
+Joseph Szokoli
+https://sites.google.com/view/josephszokoli/
 
-#Help: 
-#To create shelf icon paste jsTopologyChecker.py to your scripts folder and assign the following command to the shelf
-#import jsTopologyChecker
-#reload(jsTopologyChecker)
+
+A tool to sanity check meshes for [History,Ngons,Triangles,Concave Faces,Non-Frozen Transforms, Lamina Faces, NonManifold Vertices, NonManifold Edges, and extra shape nodes]
+
+
+
+Help: 
+Clone jsTK to your maya/scripts/ folder and assign the following command to the shelf.
+
+import sys
+from os.path import expanduser
+home = expanduser("~")
+sys.path.append(home+"/maya/scripts/jsTK/jsTK")
+
+import jsTopologyChecker.utilities
+jsTopologyChecker.utilities.deleteModules('jsTopologyChecker')
+import jsTopologyChecker
+jsTopologyChecker.launch_ui()
+
+
 
 ### ChangeLog: ################################################################################
 
