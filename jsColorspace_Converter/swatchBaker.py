@@ -37,9 +37,15 @@ def attrList(node):
         attrGet = cmds.listAttr(i,
         output=False)
         for h in attrGet:
-            attrType= cmds.attributeQuery(h,node=i,at=1)
-            if attrType == 'float3':
-                vectorList.append(h)
+            #print h
+            try:
+                attrType= cmds.attributeQuery(h,node=i,at=1)
+                if attrType == 'float3':
+                    #print 'passed'
+                    vectorList.append(h)
+            except:
+                cmds.warning( h+ ' failed to check.')
+                pass
     return vectorList
 
 
