@@ -37,18 +37,30 @@ def attrList(node):
         attrGet = cmds.listAttr(i,
         output=False)
         for h in attrGet:
-            #print h
-            try:
-                attrType= cmds.attributeQuery(h,node=i,at=1)
-                if attrType == 'float3':
-                    #print 'passed'
-                    vectorList.append(h)
-            except:
-                cmds.warning( h+ ' failed to check.')
+            if '.' in h:
                 pass
+            else:
+                if cmds.attributeQuery(h,node=i,at=1) == 'compound':
+                    compoundChildren = cmds.attributeQuery(h,node=i,lc=1)
+                    numberChildren = cmds.getAttr(i+'.'+h,mi=1)
+                    for child in compoundChildren:
+                        for x in numberChildren:
+                            try:
+                                checker1=  cmds.getAttr(i+'.'+h+'['+str(x)+'].'+child)
+                                if len(checker1):
+                                    vectorList.append(h+'['+str(x)+'].'+child)
+                                else:
+                                    pass
+                            except:
+                                pass
+                            
+                else:
+                    attrType= cmds.attributeQuery(h,node=i,at=1)
+                    if attrType == 'float3':
+                        vectorList.append(h)
     return vectorList
 
-
+#print attrList('ref_cool_RAMP1')
 
 def attrBaker(node):
     acesDict = {}
