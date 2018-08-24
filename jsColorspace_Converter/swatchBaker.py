@@ -47,7 +47,7 @@ def attrList(node):
                         for x in numberChildren:
                             try:
                                 checker1=  cmds.getAttr(i+'.'+h+'['+str(x)+'].'+child)
-                                if len(checker1):
+                                if len(checker1[0]) ==3:
                                     vectorList.append(h+'['+str(x)+'].'+child)
                                 else:
                                     pass
