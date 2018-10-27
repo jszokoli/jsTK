@@ -120,14 +120,15 @@ def nudgeLeft(args=None):
 
 
 def closeUV(args=None):
-    cmds.window('jsUV', edit=True, widthHeight=[300,20], s = False)      
+    cmds.window('jsUV', edit=True, widthHeight=[300,25], s = False)      
 
     
 def expandUV(args=None):
-    cmds.window('jsUV', edit=True, widthHeight=[300,170], s = False)   
+    cmds.window('jsUV', edit=True, widthHeight=[300,140], s = False)   
 
 if cmds.window('jsUV', exists=True):
     cmds.deleteUI('jsUV')
+
 cmds.window('jsUV', title= 'jsUVTools '+versionNumberUV)
 
 cmds.frameLayout(label = "jsUVTools:", borderStyle = "etchedIn",cll=1,cc=closeUV, ec = expandUV)
@@ -141,16 +142,46 @@ cmds.setParent('..')
 
 #cmds.rowLayout( nc=2, adjustableColumn=2, columnAlign=(1, 'left'), w= 300 )
 cmds.flowLayout()
-cmds.iconTextButton(label = 'Unfold HV:', image = 'textureEditorUnfoldUVsLarge.png', style =  "iconAndTextHorizontal", fla = 0, mh = 20, mw = 50, c=repitionUnfoldHV,w=147 )
-cmds.iconTextButton(label = 'Unfold VH:', image = 'textureEditorUnfoldUVsLarge.png', style =  "iconAndTextHorizontal", fla = 0, mh = 20, mw = 50, c=repitionUnfoldVH,w=147 )
+'''
+cmds.iconTextButton(label = 'Unfold HV:',
+image = 'textureEditorUnfoldUVsLarge.png',
+style =  "iconAndTextHorizontal",
+fla = 0,
+mh = 20, mw = 50,
+c=repitionUnfoldHV,
+w=147 )
+
+cmds.iconTextButton(label = 'Unfold VH:',
+image = 'textureEditorUnfoldUVsLarge.png',
+style =  "iconAndTextHorizontal",
+fla = 0,
+mh = 20, mw = 50,
+c=repitionUnfoldVH,w=147 )
+'''
+cmds.button(label = 'Unfold HV:',
+c=repitionUnfoldHV,
+w=147 )
+
+cmds.button(label = 'Unfold VH:',
+c=repitionUnfoldVH,w=147 )
+
+
 cmds.setParent('..')
 
 
 cmds.separator( height=5, style='in' )
 cmds.flowLayout()
-cmds.iconTextButton(label = 'Flip UV:', image = 'polyFlipUVs.png', style =  "iconAndTextHorizontal", fla = 0, mh = 20, mw = 50, c=flipAllUV )
-cmds.iconTextButton(label = 'Tube Unfold:', image = 'polySelectUV.png', style =  "iconAndTextHorizontal", fla = 0, mh = 20, mw = 50, c=tubeUnfold )
-cmds.iconTextButton(label = 'Face to Edge:', image = 'polyConvertToEdge.png', style =  "iconAndTextHorizontal", fla = 0, mh = 20, mw = 50, c=face2Edge )
+
+cmds.button(label = 'Flip UV:',
+c=flipAllUV )
+
+cmds.button(label = 'Tube Unfold:',
+c=tubeUnfold )
+
+cmds.button(label = 'Face to Edge:',
+c=face2Edge )
+
+
 cmds.setParent('..')
 
 cmds.separator( height=5, style='in' )
@@ -174,4 +205,4 @@ cmds.setParent('..')
 cmds.setParent('..')
 cmds.setParent('..')
 cmds.showWindow( 'jsUV' )
-cmds.window('jsUV', edit=True, widthHeight=[300,170], s = False)
+cmds.window('jsUV', edit=True, widthHeight=[300,140], s = False)
