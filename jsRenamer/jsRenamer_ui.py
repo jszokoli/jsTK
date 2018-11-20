@@ -113,7 +113,7 @@ class JsRenamer_ui(object):
 
 
         cmds.menu( label='Bonus Tools', tearOff=False )
-        cmds.menuItem( label='Clean Selected xForm Shape Nodes',
+        cmds.menuItem( label='Clean Selected xForm Intermediate Shapes',
         c=self.btl.cleanUpShapes )
 
 
