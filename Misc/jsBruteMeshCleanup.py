@@ -33,8 +33,9 @@ for i in sel:
             importCleanupNodes.append(node)
     if len(importCleanupNodes) > 0:
         cmds.delete(importCleanupNodes)
-        cmds.select(xformNode)
-        cmds.hyperShade(assign='initialShadingGroup')
+    
+    cmds.select(xformNode)
+    cmds.hyperShade(assign='initialShadingGroup')
 
     cmds.parent(xformNode, parentNode)
 
@@ -48,6 +49,9 @@ for cleanup in sel:
     print 'Cleaned up node: '+cleanup + ' | Assigned Lambert1'
 time_elapsed = (time.clock() - time_start)
 print 'Process took '+ str(time_elapsed) + ' seconds to complete.'
+
+
+
 
 
 
