@@ -9,16 +9,29 @@ class BonusTools(object):
         sel = cmds.ls(sl=1,type='transform')
 
         for xform in sel:
-            print xform
+            #print xform
+            cmds.delete(xform,ch=1)
             correctShape = []
+            intermediateShapes = []
             children = cmds.listRelatives(xform,c=1)
-            for childShape in children:
-                if cmds.listConnections(childShape+'.instObjGroups') == None:
-                    print 'deleted ' + childShape
-                    cmds.delete(childShape)
+            for shapeNode in children:
+                #print shapeNode
+                if cmds.getAttr(shapeNode+'.intermediateObject') == True:
+                    intermediateShapes.append(shapeNode)
                 else:
-                    correctShape.append(childShape)
-                        
+                    correctShape.append(shapeNode)
+            #print intermediateShapes
+            #print correctShape 
+            if len(intermediateShapes) > 0:
+                cmds.delete(intermediateShapes)
+            
             for origShapeName in correctShape:
-                cmds.rename(origShapeName,xform+'Shape')
-                print xform+'Shape'
+                if origShapeName in xform+'Shape':
+                    pass
+                else:            
+                    cmds.rename(origShapeName,xform+'Shape')
+
+            if len(intermediateShapes) > 0:
+                print xform+' intermediate shapes nodes ('+str(intermediateShapes)+') have been deleted'
+
+                
