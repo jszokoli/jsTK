@@ -11,7 +11,9 @@ def createFBXProxies(args=None):
         mtlName =  mesh.split('_')[0]
         if mtlName not in missingMaterialList:
             if 'Mtl' in mtlName:
-                missingMaterialList.append(mtlName)  
+                missingMaterialList.append(mtlName)
+            else:
+                 missingMaterialList.append(mtlName)
     print missingMaterialList
     for mtl in missingMaterialList:
         fbxProxyMtl= cmds.shadingNode('lambert', n = mtl, asShader=True)
@@ -51,7 +53,9 @@ def createFBXProxiesUI(args=None):
         mtlName =  mesh.split('_')[0]
         if mtlName not in missingMaterialList:
             if 'Mtl' in mtlName:
-                missingMaterialList.append(mtlName)  
+                missingMaterialList.append(mtlName)
+            else:
+                missingMaterialList.append(mtlName) 
     print missingMaterialList
     for mtl in missingMaterialList:
         fbxProxyMtl= cmds.shadingNode('lambert', n = mtl, asShader=True)
@@ -113,7 +117,7 @@ def buildMatProxyUI(args=None):
     
     cmds.frameLayout(label = 'Material Prefix Proxy Materials')
     cmds.columnLayout(adj=1)
-    cmds.textField('searchField', tx='high_model_GRP')
+    cmds.textField('searchField', tx='model_GRP')
     buttH=35
     addProxyButt = cmds.button(h=buttH,l='Create Prefix Materials:',c=createFBXProxiesUI)
     cmds.button(h=buttH,l='Delete Proxy Nodes:',c=deleteFBXProxies)
