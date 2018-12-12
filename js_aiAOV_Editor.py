@@ -58,13 +58,12 @@ def aov_add2List(aovNode):
 
 def aov_addAll2List(args=None):
     aovDict = aov_buildAovDict()
-    for aovNode in aovDict:
+    for aovNode, descriptionDict in sorted(allAovDict.iteritems(), key=lambda (k,v): (v,k)):
         currentInList = cmds.textScrollList('AOVoperatorList',query=True,allItems=True) or []
         if aovNode not in currentInList:
             cmds.textScrollList('AOVoperatorList',edit=True,append=aovNode)
         else:
             cmds.warning(aovNode+' currently in list.')
-
 
 
 def aov_clearList(args=None):
