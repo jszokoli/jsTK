@@ -166,7 +166,7 @@ def ui_deleteAOV(allAovDict):
         cmds.deleteUI('DeleteAOV')
 
     #Create Initial Window
-    mainWindow = cmds.window('DeleteAOV', title= 'js_aiAOV_BatchEditor')
+    mainWindow = cmds.window('DeleteAOV', title= 'js_aiAOV_Editor')
 
     cmds.flowLayout()
 
