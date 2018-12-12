@@ -49,14 +49,16 @@ def aov_enableToggle(aovNode):
 
 
 def aov_add2List(aovNode):
+
     currentInList = cmds.textScrollList('AOVoperatorList',query=True,allItems=True) or []
     if aovNode not in currentInList:
         cmds.textScrollList('AOVoperatorList',edit=True,append=aovNode)
     else:
         cmds.warning(aovNode+' currently in list.')
 
-def aov_addAll2List(aovNodes):
-    for aovNode in aovNodes:
+def aov_addAll2List(args=None):
+    aovDict = aov_buildAovDict()
+    for aovNode in aovDict:
         currentInList = cmds.textScrollList('AOVoperatorList',query=True,allItems=True) or []
         if aovNode not in currentInList:
             cmds.textScrollList('AOVoperatorList',edit=True,append=aovNode)
@@ -80,7 +82,10 @@ def aov_SoloSelect(aovNode):
 def aov_deleteSelected(args=None):
     selectedFromList = cmds.textScrollList('AOVoperatorList',query=True,selectItem=True) or []
     for aovNode in selectedFromList:
-        cmds.textScrollList('AOVoperatorList',edit=True,removeItem=aovNode)
+        try:
+            cmds.textScrollList('AOVoperatorList',edit=True,removeItem=aovNode)
+        except:
+            pass
         try:
             cmds.delete(aovNode)  
         except:
@@ -193,9 +198,7 @@ def ui_deleteAOV(allAovDict):
 
     cmds.setParent('..')
     cmds.setParent('..')
-    allList = []
-    for node, descriptionDict in sorted(allAovDict.iteritems(), key=lambda (k,v): (v,k)):
-        allList.append(node)
+
     cmds.frameLayout('Current AOVs',w=515,h=462L)
     darkGrey = .1
     cmds.flowLayout(w=500,h=20)
@@ -203,7 +206,7 @@ def ui_deleteAOV(allAovDict):
     cmds.textField(text='AOV Name',w=150,ed=0,bgc=[darkGrey,darkGrey,darkGrey])
     cmds.textField(text='AOV Node',w=200,ed=0,bgc=[darkGrey,darkGrey,darkGrey])
 
-    cmds.button('Add All',w=74,command=Callback(aov_addAll2List,allList))
+    cmds.button('Add All',w=74,command=aov_addAll2List)
 
     cmds.setParent('..')
     
