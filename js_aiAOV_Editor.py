@@ -46,7 +46,7 @@ def aov_disable(args=None):
         cmds.setAttr(aovNode+'.aoven',0)
 
 
-
+'''
 def aov_enableToggle(aovNode):
     checkBoxBool = cmds.checkBox(aovNode+'_checkBox', query=True, value=True)
     cmds.setAttr(aovNode+'.aoven',checkBoxBool)
@@ -55,7 +55,7 @@ def aov_enableToggle(aovNode):
 def aov_lightGroupsToggle(aovNode):
     checkBoxBool = cmds.checkBox(aovNode+'_lightGroupBox', query=True, value=True)
     cmds.setAttr(aovNode+'.lightGroups',checkBoxBool)
-
+'''
 
 def aov_add2List(aovNode):
 
@@ -192,14 +192,17 @@ def ui_refreshAOV(allAovDict):
     
     for node, descriptionDict in sorted(aovDict.iteritems(), key=lambda (k,v): (v,k)):
         cmds.columnLayout(node+'ColLay',parent = 'AOVparentScroll')
+
         cmds.flowLayout(node+'flowLay',w=497,h=20)
-        # cmds.checkBox(node+'_checkBox',l='Enable AOV',value=descriptionDict['aoven'],changeCommand=Callback(aov_enableToggle,node) )
-        cmds.checkBox(node+'_checkBox',l=' ',value=descriptionDict['aoven'],changeCommand=Callback(aov_enableToggle,node) )
+        
+        cmds.checkBox(node+'_checkBox',l=' ',value=descriptionDict['aoven'])#,changeCommand=Callback(aov_enableToggle,node) 
+        cmds.connectControl(node+'_checkBox', node+'.aoven')
 
         cmds.textField(text=descriptionDict['name'],w=150,ed=0,bgc=[lightGrey,lightGrey,lightGrey])
         cmds.textField(text=node,w=172,ed=0,bgc=[lightGrey,lightGrey,lightGrey])
 
-        cmds.checkBox(node+'_lightGroupBox',l='Light Groups ',value=descriptionDict['lightGroups'] ,changeCommand=Callback(aov_lightGroupsToggle,node) )
+        cmds.checkBox(node+'_lightGroupBox',l='Light Groups ',value=descriptionDict['lightGroups'])#,changeCommand=Callback(aov_lightGroupsToggle,node)
+        cmds.connectControl(node+'_lightGroupBox', node+'.lightGroups')
 
         cmds.button('+',w=25, command=Callback(aov_add2List,node))
         cmds.button('Sel ',w=25, command=Callback(aov_SoloSelect,node) ) 
@@ -207,10 +210,9 @@ def ui_refreshAOV(allAovDict):
         cmds.setParent('..')
         cmds.separator(node+'Separator')
         cmds.setParent('..')
-
     
 
-def ui_deleteAOV(allAovDict):
+def ui_aiAOVEditor(allAovDict):
     #If window exists delete 
     if cmds.window('DeleteAOV', exists=True):
         cmds.deleteUI('DeleteAOV')
@@ -219,7 +221,6 @@ def ui_deleteAOV(allAovDict):
     mainWindow = cmds.window('DeleteAOV', title= 'js_aiAOV_Editor')
 
     cmds.flowLayout()
-
 
     cmds.frameLayout('Operator List',w=215)
     cmds.columnLayout()
@@ -264,15 +265,19 @@ def ui_deleteAOV(allAovDict):
     #cmds.columnLayout(w=1000)
     lightGrey = .17
     for node, descriptionDict in sorted(allAovDict.iteritems(), key=lambda (k,v): (v,k)):
+
         cmds.columnLayout(node+'ColLay')
+
         cmds.flowLayout(node+'flowLay',w=497,h=20)
-        # cmds.checkBox(node+'_checkBox',l='Enable AOV',value=descriptionDict['aoven'],changeCommand=Callback(aov_enableToggle,node) )
-        cmds.checkBox(node+'_checkBox',l=' ',value=descriptionDict['aoven'],changeCommand=Callback(aov_enableToggle,node) )
+        
+        cmds.checkBox(node+'_checkBox',l=' ',value=descriptionDict['aoven'])#,changeCommand=Callback(aov_enableToggle,node) 
+        cmds.connectControl(node+'_checkBox', node+'.aoven')
 
         cmds.textField(text=descriptionDict['name'],w=150,ed=0,bgc=[lightGrey,lightGrey,lightGrey])
         cmds.textField(text=node,w=172,ed=0,bgc=[lightGrey,lightGrey,lightGrey])
 
-        cmds.checkBox(node+'_lightGroupBox',l='Light Groups ',value=descriptionDict['lightGroups'],changeCommand=Callback(aov_lightGroupsToggle,node))   
+        cmds.checkBox(node+'_lightGroupBox',l='Light Groups ',value=descriptionDict['lightGroups'])#,changeCommand=Callback(aov_lightGroupsToggle,node)
+        cmds.connectControl(node+'_lightGroupBox', node+'.lightGroups')
 
         cmds.button('+',w=25, command=Callback(aov_add2List,node))
         cmds.button('Sel ',w=25, command=Callback(aov_SoloSelect,node) ) 
@@ -288,6 +293,6 @@ def ui_deleteAOV(allAovDict):
     cmds.window('DeleteAOV', edit=True, s = False, widthHeight=[732L, 462L])
     #cmds.window('DeleteAOV', query=True, widthHeight=True)
 
-ui_deleteAOV( aov_buildAovDict() )
+ui_aiAOVEditor( aov_buildAovDict() )
 
 #print cmds.window('DeleteAOV', query=True, widthHeight=True)
