@@ -67,8 +67,10 @@ def aov_add2List(aovNode):
 
 
 def aov_addAll2List(args=None):
-    aovDict = aov_buildAovDict()
-    for aovNode, descriptionDict in sorted(allAovDict.iteritems(), key=lambda (k,v): (v,k)):
+    #aovDict = aov_buildAovDict()
+    sel = cmds.ls(type='aiAOV')
+    #for aovNode, descriptionDict in sorted(allAovDict.iteritems(), key=lambda (k,v): (v,k)):
+    for aovNode in sorted(sel):
         currentInList = cmds.textScrollList('AOVoperatorList',query=True,allItems=True) or []
         if aovNode not in currentInList:
             cmds.textScrollList('AOVoperatorList',edit=True,append=aovNode)
@@ -156,7 +158,25 @@ def aov_lightGroupsOff(args=None):
         cmds.setAttr(aovNode+'.lightGroups', 0)
 
 def ui_refreshAOV(allAovDict):
-    aovDict = aov_buildAovDict()
+
+    sel = cmds.ls(type='aiAOV')
+    allAovDict = {}
+    for i in sel:
+        currentAovDict = {}
+        aovName = cmds.getAttr(i+'.name')
+        aovType = cmds.getAttr(i+'.aovt')
+        aovEnable = cmds.getAttr(i+'.aoven')
+        aovLightGroups = cmds.getAttr(i+'.lightGroups')
+
+        currentAovDict['name'] = aovName
+        #currentAovDict['aovt'] = aovType
+        currentAovDict['aoven'] = aovEnable
+        currentAovDict['lightGroups'] = aovLightGroups
+        allAovDict[i] = currentAovDict
+    aovDict = allAovDict
+
+
+    #aovDict = aov_buildAovDict()
     #print allAovDict
     cmds.textScrollList('AOVoperatorList',edit=True,removeAll=True)
     
