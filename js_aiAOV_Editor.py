@@ -178,15 +178,10 @@ def ui_refreshAOV(allAovDict):
     aovDict = allAovDict
 
 
-    #aovDict = aov_buildAovDict()
-    #print allAovDict
-    cmds.textScrollList('AOVoperatorList',edit=True,removeAll=True)
-    
-    for node, descriptionDict in sorted(allAovDict.iteritems(), key=lambda (k,v): (v,k)):
-        try:
-            cmds.deleteUI(node+'ColLay')
-        except:
-            pass
+    childrenLayouts = cmds.layout( 'AOVparentScroll', query=True, childArray=True ) or []
+    for i in childrenLayouts:
+        cmds.deleteUI(i)
+
     
     lightGrey = .17
     
