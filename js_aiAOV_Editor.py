@@ -242,7 +242,7 @@ def ui_deleteAOV(allAovDict):
     lightGrey = .17
     for node, descriptionDict in sorted(allAovDict.iteritems(), key=lambda (k,v): (v,k)):
         cmds.columnLayout(node+'ColLay')
-        cmds.flowLayout(node+'flowLay',w=500,h=20)
+        cmds.flowLayout(node+'flowLay',w=497,h=20)
         # cmds.checkBox(node+'_checkBox',l='Enable AOV',value=descriptionDict['aoven'],changeCommand=Callback(aov_enableToggle,node) )
         cmds.checkBox(node+'_checkBox',l=' ',value=descriptionDict['aoven'],changeCommand=Callback(aov_enableToggle,node) )
 
