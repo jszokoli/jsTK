@@ -177,7 +177,8 @@ def ui_refreshAOV(allAovDict):
         allAovDict[i] = currentAovDict
     aovDict = allAovDict
 
-
+    cmds.textScrollList('AOVoperatorList',edit=True,removeAll=True)
+    
     childrenLayouts = cmds.layout( 'AOVparentScroll', query=True, childArray=True ) or []
     for i in childrenLayouts:
         cmds.deleteUI(i)
