@@ -192,7 +192,7 @@ def ui_refreshAOV(allAovDict):
     
     for node, descriptionDict in sorted(aovDict.iteritems(), key=lambda (k,v): (v,k)):
         cmds.columnLayout(node+'ColLay',parent = 'AOVparentScroll')
-        cmds.flowLayout(node+'flowLay',w=500,h=20)
+        cmds.flowLayout(node+'flowLay',w=497,h=20)
         # cmds.checkBox(node+'_checkBox',l='Enable AOV',value=descriptionDict['aoven'],changeCommand=Callback(aov_enableToggle,node) )
         cmds.checkBox(node+'_checkBox',l=' ',value=descriptionDict['aoven'],changeCommand=Callback(aov_enableToggle,node) )
 
