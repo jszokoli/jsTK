@@ -151,11 +151,13 @@ def aov_lightGroupsOn(args=None):
     selectedFromList = cmds.textScrollList('AOVoperatorList',query=True,selectItem=True) or []
     for aovNode in selectedFromList:
         cmds.setAttr(aovNode+'.lightGroups', 1)
+        cmds.checkBox(aovNode+'_lightGroupBox', edit=True, value=True)
 
 def aov_lightGroupsOff(args=None):
     selectedFromList = cmds.textScrollList('AOVoperatorList',query=True,selectItem=True) or []
     for aovNode in selectedFromList:
         cmds.setAttr(aovNode+'.lightGroups', 0)
+        cmds.checkBox(aovNode+'_lightGroupBox', edit=True, value=False)
 
 def ui_refreshAOV(allAovDict):
 
