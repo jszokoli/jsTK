@@ -29,6 +29,7 @@ def aov_buildAovDict(args=None):
         allAovDict[i] = currentAovDict
     return allAovDict
 
+#print aov_buildAovDict()
 
 def aov_enable(args=None):
     selectedFromList = cmds.textScrollList('AOVoperatorList',query=True,selectItem=True) or []
