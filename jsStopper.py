@@ -33,7 +33,7 @@ def exposureStopper(value):
             gatherLightShapes(convDict['cValue'],convDict['sign'])
 
 def gatherLightShapes(cValue,sign):
-    aiLightType = ['aiAreaLight']
+    aiLightType = ['aiAreaLight','aiSkyDomeLight','spotLight','directionalLight','pointLight','areaLight']
     otherTypes = []
     sel = cmds.ls(sl=1)
     for obj in sel:
