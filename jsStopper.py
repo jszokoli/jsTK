@@ -1,5 +1,7 @@
 import maya.cmds as cmds
 from pymel.all import *
+
+#from functools import partial
 ######################
 ###jsStopper v1.0#####
 ######################
@@ -55,10 +57,23 @@ def setExposure(shapeNode,nodeSType,cValue,sign):
         print origExposure
         if sign == 'Positive':
             newExposure = origExposure+cValue
-            cmds.warning( 'Increased Exposure of '+ shapeNode +' from '+ str(origExposure) +' to '+str(newExposure) )
+
+            cmds.inViewMessage( amg='Increased Exposure of '+ shapeNode +' from '+ str(origExposure) +' to '+str(newExposure),
+            pos='topCenter',
+            fit=50,
+            fst=800,
+            fot=50,
+            fade=True )
         elif sign == 'Negative':
             newExposure = origExposure-cValue
-            cmds.warning( 'Decreased Exposure of '+ shapeNode +' from '+ str(origExposure) +' to '+str(newExposure) )
+
+            cmds.inViewMessage( amg='Decreased Exposure of '+ shapeNode +' from '+ str(origExposure) +' to '+str(newExposure),
+            pos='topCenter',
+            fit=50,
+            fst=800,
+            fot=50,
+            fade=True )
+
         cmds.setAttr(shapeNode+'.aiExposure',newExposure)
         
     elif nodeSType == 'other':
@@ -85,6 +100,7 @@ def ui_jsTopper(args=None):
     positiveButtons = ['+1/4','+1/2','+3/4','+1']
     for but in positiveButtons:
         cmds.button(l=but,command = Callback(exposureStopper,but) )
+        #cmds.button(l=but,command = partial(exposureStopper,but) )
  
     cmds.setParent('..')
     
