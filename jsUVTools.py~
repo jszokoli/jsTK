@@ -18,7 +18,7 @@ versionNumberUV = 'v1.1'###
 
 ### ChangeLog: ################################################################################
 ###v1.1 Added Horizontal Vertical Order Switch
-#this is a change
+
 ###v1.0 Initial Release
 def repitionUnfold(Args=None):
     repeatUnfold = cmds.intSliderGrp('unfoldRepeatSlider', query = True, value = True)
