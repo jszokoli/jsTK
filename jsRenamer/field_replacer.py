@@ -21,18 +21,6 @@ class FieldReplacer(object):
         #check if correct amount of fields
         if len(splitNode) == 5:
             return True
-            '''
-            #check if material prefix ends in MTL
-            if splitNode[0][-3:] == 'Mtl':
-                #Check if field has 2 or less letters
-                if splitNode[1] in availPos:
-                    if splitNode[3] in availSuf:
-                        print splitNode[2][-4:]
-                else:
-                    pass
-            else:
-                pass
-            '''
         else:
             return False
             

@@ -1,4 +1,5 @@
 import maya.cmds as cmds
+from . import renamer_settings as settings
 
 class TemplateRenamer(object):
 
@@ -63,7 +64,8 @@ class TemplateRenamer(object):
                 cmds.rename(each[1],newNameFullRenamer)
             except:
                 pass
-
+        # if matField not in settings.commonMtls:
+        #     settings.commonMtls.append(matField)
     def exTemplateRenamer(self,args=None):
         self.templateRenamer()
         self.templateRenamer()
