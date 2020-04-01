@@ -19,6 +19,7 @@ class JsRenamer_ui(object):
         self.trn = template_renamer.TemplateRenamer()
         self.crn = custom_renamer.CustomRenamer()
         self.btl = bonus_tools.BonusTools()
+        self.mat_list = []
 
     def updatePreviewText(self,args=None):
         matField = cmds.textField('materialField',query=True,tx=1)
@@ -84,14 +85,12 @@ class JsRenamer_ui(object):
         self.updatePreviewText()
 
 
-    def clear_menu(self,*args):
-        pop_up = cmds.popupMenu('materials_popup')
-        cmds.popupMenu('materials_popup',edit=True, deleteAllItems=True)
-        commonWithUsed = settings.commonMtls + self.btl.material_scan()
-        for mtl in commonWithUsed:
-            print mtl
-            cmds.menuItem(l=mtl,parent='materials_popup', c=partial(self.getName,mtl))
-
+    def clear_menu(self,menu,parent):
+        print menu
+        cmds.popupMenu(menu, edit=True, deleteAllItems=True)
+        mat_scan = self.btl.material_scan()
+        for new_mat in mat_scan:
+            cmds.menuItem(l=new_mat, parent=menu, c=partial(self.getName,new_mat))
 
 
     def documentation(self,args=None):
@@ -116,14 +115,14 @@ class JsRenamer_ui(object):
             resizeToFitChildren = 1,
             menuBar=True)
 
-
-
+        cmds.menu(label='Material Name Visualizer', tearOff=False)
+        cmds.menuItem( label='Visualize Materials', c=self.btl.visualize_materials)
+        cmds.menuItem( label='Delete Visualized Materials', c=self.btl.delete_visualizers)
 
 
         cmds.menu( label='Bonus Tools', tearOff=False )
         cmds.menuItem( label='Clean Selected xForm Intermediate Shapes', c=self.btl.cleanUpShapes )
-        cmds.menuItem( label='Visualize Materials', c=self.btl.visualize_materials)
-        cmds.menuItem( label='Delete Visualized Materials', c=self.btl.delete_visualizers)
+
 
 
         cmds.menu( label='Help', helpMenu=True )
@@ -164,7 +163,7 @@ class JsRenamer_ui(object):
         #postMenuCommand
         popup = cmds.popupMenu('materials_popup', parent=btn, ctl=False, button=1, postMenuCommand=self.clear_menu)
         for mtl in settings.commonMtls:
-            cmds.menuItem(l=mtl, c=partial(self.getName,mtl))
+            cmds.menuItem(mtl, l=mtl,parent='materials_popup', c=partial(self.getName,mtl))
 
         cmds.setParent('..')
         cmds.button('matRep',l='Replace', w=150,c=self.frp.replaceMaterial )

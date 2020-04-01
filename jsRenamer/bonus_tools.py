@@ -99,7 +99,7 @@ class BonusTools():
                 cmds.select(appliedMeshes)
                 cmds.hyperShade(a='lambert1')
         cmds.select(origSel)
-
+    @classmethod
     def material_scan(self):
         candidate_meshes = cmds.ls('*_GE?')
         children = cmds.listRelatives(candidate_meshes, ad=1, typ="mesh")
