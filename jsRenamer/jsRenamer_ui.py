@@ -8,7 +8,6 @@ from . import bonus_tools
 from . import renamer_settings as settings
 
 
-
 ######CollapseCommands#####################################################
 ###########################################################################
 ###########################################################################
@@ -85,6 +84,15 @@ class JsRenamer_ui(object):
         self.updatePreviewText()
 
 
+    def clear_menu(self,*args):
+        pop_up = cmds.popupMenu('materials_popup')
+        cmds.popupMenu('materials_popup',edit=True, deleteAllItems=True)
+        commonWithUsed = settings.commonMtls + self.btl.material_scan()
+        for mtl in commonWithUsed:
+            print mtl
+            cmds.menuItem(l=mtl,parent='materials_popup', c=partial(self.getName,mtl))
+
+
 
     def documentation(self,args=None):
         print settings.documentationString
@@ -113,8 +121,9 @@ class JsRenamer_ui(object):
 
 
         cmds.menu( label='Bonus Tools', tearOff=False )
-        cmds.menuItem( label='Clean Selected xForm Intermediate Shapes',
-        c=self.btl.cleanUpShapes )
+        cmds.menuItem( label='Clean Selected xForm Intermediate Shapes', c=self.btl.cleanUpShapes )
+        cmds.menuItem( label='Visualize Materials', c=self.btl.visualize_materials)
+        cmds.menuItem( label='Delete Visualized Materials', c=self.btl.delete_visualizers)
 
 
         cmds.menu( label='Help', helpMenu=True )
@@ -152,8 +161,8 @@ class JsRenamer_ui(object):
 
 
 
-
-        popup = cmds.popupMenu(parent=btn, ctl=False, button=1)
+        #postMenuCommand
+        popup = cmds.popupMenu('materials_popup', parent=btn, ctl=False, button=1, postMenuCommand=self.clear_menu)
         for mtl in settings.commonMtls:
             cmds.menuItem(l=mtl, c=partial(self.getName,mtl))
 
