@@ -102,13 +102,14 @@ class BonusTools():
     @classmethod
     def material_scan(self):
         candidate_meshes = cmds.ls('*_GE?')
-        children = cmds.listRelatives(candidate_meshes, ad=1, typ="mesh")
-        material_list = []
-        for mesh in children:
-            mtl_name = mesh.split('_')[0]
-            if mtl_name not in material_list:
-                if 'Mtl' in mtl_name:
-                    material_list.append(mtl_name)
-                else:
-                    material_list.append(mtl_name)
-        return material_list
+        if candidate_meshes:
+            children = cmds.listRelatives(candidate_meshes, ad=1, typ="mesh")
+            material_list = []
+            for mesh in children:
+                mtl_name = mesh.split('_')[0]
+                if mtl_name not in material_list:
+                    if 'Mtl' in mtl_name:
+                        material_list.append(mtl_name)
+                    else:
+                        material_list.append(mtl_name)
+            return material_list

@@ -86,11 +86,14 @@ class JsRenamer_ui(object):
 
 
     def clear_menu(self,menu,parent):
-        print menu
         cmds.popupMenu(menu, edit=True, deleteAllItems=True)
         mat_scan = self.btl.material_scan()
-        for new_mat in mat_scan:
-            cmds.menuItem(l=new_mat, parent=menu, c=partial(self.getName,new_mat))
+        if mat_scan:
+            for new_mat in mat_scan:
+                cmds.menuItem(l=new_mat, parent=menu, c=partial(self.getName,new_mat))
+        else:
+            for new_mat in settings.commonMtls:
+                cmds.menuItem(l=new_mat, parent=menu, c=partial(self.getName,new_mat))
 
 
     def documentation(self,args=None):
