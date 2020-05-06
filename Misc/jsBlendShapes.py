@@ -40,6 +40,19 @@ mouth2 = ['Mouth_Row_2','mouth_lipTopUp', 'mouth_lipTopDown', 'mouth_lipBottomUp
 mouth3= ['Mouth_Row_3','mouth_lipTopMiddleDown', 'mouth_lipBottomMiddleUp', 'mouth_lipBottomMiddleDown', 'mouth_lipTopOutsideUp', 'mouth_lipTopOutsideDown', 'mouth_lipBottomOutsideUp', 'mouth_lipBottomOutsideDown', 'mouth_lipTopScaleUp', 'mouth_lipTopScaleDown', 'mouth_lipBottomScaleUp', 'mouth_lipBottomScaleDown', 'mouth_lipTopCreaseHarden', 'mouth_lipTopCreaseSoften', 'mouth_lipBottomCreaseHarden', 'mouth_lipBottomCreaseSoften', 'mouth_nostrilFlare', 'mouth_nostrilContract', 'mouth_nostrilUp', 'mouth_nostrilDown', 'mouth_noseSneer']
 
 
+
+brows = ['Brows','brow_lineUp', 'brow_lineDown', 'brow_lidUp', 'brow_lidDown', 'brow_massUp', 'brow_massDown', 'brow_slideOut', 'brow_slideIn', 'brow_lineScaleUp', 'brow_lineScaleDown', 'brow_lidScaleUp', 'brow_lidScaleDown', 'brow_insideUp', 'brow_insideDown', 'brow_middleUp', 'brow_middleDown', 'brow_outsideUp', 'brow_outsideDown', 'brow_bridgeCrease', 'brow_crowsfeetDown']
+
+cheeks = ['Cheeks','cheek_lineUp', 'cheek_lineDown', 'cheek_lidUp', 'cheek_lidDown', 'cheek_massUp', 'cheek_massDown', 'cheek_puffOut', 'cheek_puffIn', 'cheek_slideOut', 'cheek_slideIn', 'cheek_scaleUp', 'cheek_scaleDown', 'cheek_lidScaleUp', 'cheek_lidScaleDown', 'cheek_insideUp', 'cheek_insideDown', 'cheek_middleUp', 'cheek_middleDown', 'cheek_outsideUp', 'cheek_outsideDown', 'cheek_ridgeCrease']
+
+mouth1 = ['Mouth_Row_1','mouth_jawOpen', 'mouth_jawClose', 'mouth_jawUp', 'mouth_jawDown', 'mouth_jawLeft', 'mouth_jawOut', 'mouth_jawIn', 'mouth_lipSlideLeft', 'mouth_lipSlideRight', 'mouth_lipWide', 'mouth_lipNarrow', 'mouth_lipTense', 'mouth_lipRelease', 'mouth_cornerUp', 'mouth_cornerDown', 'mouth_cornerOut', 'mouth_cornerIn', 'mouth_cornerPinch', 'mouth_cornerRelease', 'mouth_cornerCurlUp', 'mouth_cornerCurlDown']
+mouth2 = ['Mouth_Row_2','mouth_lipTopUp', 'mouth_lipTopDown', 'mouth_lipBottomUp', 'mouth_lipBottomDown', 'mouth_lipTopRollOut', 'mouth_lipTopRollIn', 'mouth_lipBottomRollOut', 'mouth_lipBottomRollIn', 'mouth_lipTopPushOut', 'mouth_lipTopPushIn', 'mouth_lipBottomPushOut', 'mouth_lipBottomPushIn', 'mouth_lipTopInsideUp', 'mouth_lipTopInsideDown', 'mouth_lipBottomInsideUp', 'mouth_lipBottomInsideDown', 'mouth_lipTopMiddleUp']
+mouth3= ['Mouth_Row_3','mouth_lipTopMiddleDown', 'mouth_lipBottomMiddleUp', 'mouth_lipBottomMiddleDown', 'mouth_lipTopOutsideUp', 'mouth_lipTopOutsideDown', 'mouth_lipBottomOutsideUp', 'mouth_lipBottomOutsideDown', 'mouth_lipTopScaleUp', 'mouth_lipTopScaleDown', 'mouth_lipBottomScaleUp', 'mouth_lipBottomScaleDown', 'mouth_lipTopCreaseHarden', 'mouth_lipTopCreaseSoften', 'mouth_lipBottomCreaseHarden', 'mouth_lipBottomCreaseSoften', 'mouth_nostrilFlare', 'mouth_nostrilContract', 'mouth_nostrilUp', 'mouth_nostrilDown', 'mouth_noseSneer']
+
+
+
+
+
 def nudgeShape(origShape,shapeList):
     listNew = []
     startNudge = 0
